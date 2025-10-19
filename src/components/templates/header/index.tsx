@@ -144,7 +144,7 @@ const Header = () => {
       {/* Sidebar */}
       <motion.aside
         animate={isSidebarOpen ? 'open' : 'closed'}
-        className="fixed top-0 left-0 z-[60] h-full w-full  p-6 backdrop-blur-sm text-white flex flex-col justify-between"
+        className="fixed top-0 left-0 z-[60] h-full w-full  p-6 backdrop-blur-md text-white flex flex-col justify-between"
         initial="closed"
         variants={sidebarVariants}
       >
@@ -165,29 +165,72 @@ const Header = () => {
             animate={isSidebarOpen ? 'open' : 'closed'}
             initial="closed"
             variants={menuContainerVariants}
-            className="flex flex-col space-y-6 ms-20"
+            className="flex flex-col space-y-16 ms-20"
           >
             {menu.map((m, i) => {
               const isActive = pathname === m.href;
               return (
-                <motion.div key={m.href} variants={menuItemVariants}>
+                <motion.div
+                  key={m.href}
+                  variants={menuItemVariants}
+                  whileHover="hover"
+                  className="flex items-baseline space-x-4 ms-4 max-w-lg cursor-pointer"
+                  style={{ perspective: '800px' }}
+                >
+                  {/* INDEX NUMBER */}
+                  <motion.span
+                    className="text-2xl text-gray-400"
+                    variants={{
+                      initial: { x: 0, opacity: 1 },
+                      hover: { x: -16, opacity: 0 },
+                    }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </motion.span>
+
                   <Link
                     href={m.href}
                     onClick={() => setIsSidebarOpen(false)}
-                    className={`flex items-baseline space-x-4 group`}
+                    className="relative h-[42px] overflow-visible"
                   >
-                    <span className="text-sm text-gray-400">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span
-                      className={`text-3xl font-bold transition-colors ${
-                        isActive
-                          ? 'text-orange-500'
-                          : 'text-white group-hover:text-orange-500'
+                    {/* Front face */}
+                    <motion.span
+                      className={`absolute top-2 left-0 text-5xl font-bold ${
+                        isActive ? 'text-orange-500' : 'text-white'
                       }`}
+                      style={{
+                        display: 'inline-block',
+                        transformOrigin: 'bottom center',
+                      }}
+                      variants={{
+                        initial: {
+                          rotateX: 0,
+                          color: isActive ? '#ff8c00' : '#ffffff',
+                        },
+                        hover: { rotateX: 90, color: '#ffffff' },
+                      }}
+                      transition={{ duration: 0.45, ease: 'easeInOut' }}
                     >
                       {m.title}
-                    </span>
+                    </motion.span>
+
+                    {/* Back face */}
+                    <motion.span
+                      className="absolute top-0 left-0 text-5xl font-bold text-white"
+                      style={{
+                        display: 'inline-block',
+                        transformOrigin: 'top center',
+                        rotateX: -90,
+                      }}
+                      variants={{
+                        initial: { opacity: 0, rotateX: -90 },
+                        hover: { opacity: 1, rotateX: 0 },
+                      }}
+                      transition={{ duration: 0.45, ease: 'easeInOut' }}
+                    >
+                      {m.title}
+                    </motion.span>
                   </Link>
                 </motion.div>
               );

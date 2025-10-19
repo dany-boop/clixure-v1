@@ -1,5 +1,6 @@
 'use client';
 import CircularText from '@/components/atoms/custom/rounded-text';
+import ContainerIntro from '@/components/organisms/container-intro';
 import MainLayout from '@/components/templates/main-layout';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
@@ -98,8 +99,11 @@ export default function Home() {
   );
 
   return (
-    <MainLayout>
+    <MainLayout isFull>
       {/* Wrap the target section in a container with ref */}
+      <div className="min-h-screen flex items-center justify-center">
+        <ContainerIntro />
+      </div>
       <div ref={thirdRef}>
         <div className="min-h-screen bg-green-100 flex items-center justify-center">
           <h1 className="text-4xl">2</h1>

@@ -1,38 +1,38 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useScroll } from 'framer-motion';
+import Lenis from '@studio-freight/lenis';
 
 export default function SmoothScrollWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { scrollY } = useScroll();
-
   useEffect(() => {
-    const handler = () => {
-      const sections = document.querySelectorAll<HTMLElement>('section');
-      let closest: HTMLElement | null = null;
-      let minDistance = Infinity;
+    // Create Lenis instance
+    const lenis = new Lenis({
+      duration: 1.5, // Smoothness duration (higher = slower, smoother)
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(3, -10 * t)), // Smooth easing curve
+      smoothWheel: true,
+      // smoothTouch: true, // ✅ enables smooth scroll on mobile touch
+      touchMultiplier: 1.5, // Optional: slightly faster on mobile
+    });
 
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closest = section;
-        }
-      });
+    // Animation loop
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
 
-      if (closest && minDistance < 150) {
-        (closest as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-      }
+    requestAnimationFrame(raf);
+
+    // Optional: hook into scroll events if needed
+    // lenis.on('scroll', (e) => console.log(e));
+
+    return () => {
+      lenis.destroy();
     };
-
-    window.addEventListener('scrollend', handler);
-    return () => window.removeEventListener('scrollend', handler);
-  }, [scrollY]);
+  }, []);
 
   return <>{children}</>;
 }

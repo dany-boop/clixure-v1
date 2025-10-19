@@ -1,1 +1,4 @@
-export const menu = [{ title: 'fakfak', href: '/' }];
+export const menu = [
+  { title: 'Home', href: '/' },
+  { title: 'About', href: '/' },
+];
