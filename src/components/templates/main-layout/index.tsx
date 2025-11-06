@@ -13,25 +13,17 @@ type Props = {
 const MainLayout: FC<Props> = ({ children, isFull }) => {
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden">
-      {/* 🔹 Background Layer */}
-      <div className="fixed inset-0 z-0">
-        <Boxes className="opacity-20" />
-      </div>
-
-      {/* 🔹 Foreground Layers */}
       <Cursor />
       <FloatingVerticalControls />
       <Header />
 
       {/* 🔹 Scrollable Content */}
-      <div className="relative  w-full overflow-x-hidden">
-        <SmoothScrollWrapper>
-          <main className={`min-h-screen ${isFull ? ' px-0' : 'px-10'}`}>
-            {children}
-          </main>
-        </SmoothScrollWrapper>
-        <footer>asdsa</footer>
-      </div>
+      <SmoothScrollWrapper>
+        <main className={`min-h-screen ${isFull ? ' px-0' : 'px-10'}`}>
+          {children}
+        </main>
+      </SmoothScrollWrapper>
+      <footer>asdsa</footer>
     </main>
   );
 };

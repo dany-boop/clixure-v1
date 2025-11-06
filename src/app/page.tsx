@@ -1,6 +1,8 @@
 'use client';
+import { Boxes } from '@/components/atoms/common/background-boxes';
 import CircularText from '@/components/atoms/custom/rounded-text';
-import ContainerIntro from '@/components/organisms/container-intro';
+import ContainerIntro from '@/components/organisms/container-1';
+import ContainerTwo from '@/components/organisms/container-2';
 import MainLayout from '@/components/templates/main-layout';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
@@ -100,9 +102,14 @@ export default function Home() {
 
   return (
     <MainLayout isFull>
-      {/* Wrap the target section in a container with ref */}
+      <div className="fixed inset-0 z-0">
+        <Boxes className="opacity-20" />
+      </div>
       <div className="min-h-screen flex items-center justify-center">
         <ContainerIntro />
+      </div>
+      <div className="min-h-screen">
+        <ContainerTwo />
       </div>
       <div ref={thirdRef}>
         <div className="min-h-screen bg-green-100 flex items-center justify-center">
