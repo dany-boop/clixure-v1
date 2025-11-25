@@ -18,11 +18,11 @@ const MainLayout: FC<Props> = ({ children, isFull }) => {
       <Header />
 
       {/* 🔹 Scrollable Content */}
-      <SmoothScrollWrapper>
-        <main className={`min-h-screen ${isFull ? ' px-0' : 'px-10'}`}>
-          {children}
-        </main>
-      </SmoothScrollWrapper>
+      {/* <SmoothScrollWrapper> */}
+      <main className={`min-h-screen ${isFull ? ' px-0' : 'px-10'}`}>
+        {children}
+      </main>
+      {/* </SmoothScrollWrapper> */}
       <footer>asdsa</footer>
     </main>
   );

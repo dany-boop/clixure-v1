@@ -10,6 +10,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     <div
       style={{
         transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675)`,
+        // maskImage: `radial-gradient(ellipse at center, black 20%, transparent 80%)`,
+        // WebkitMaskImage: `radial-gradient(ellipse at center, black 30%, transparent 80%)`,
       }}
       className={cn(
         'absolute -top-1/4 left-1/4 z-0 flex h-full w-full -translate-x-1/2 -translate-y-1/2 p-4',
@@ -32,7 +34,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth="1.5"
+                  strokeWidth="3"
                   stroke="currentColor"
                   className="pointer-events-none absolute -top-[14px] -left-[22px] h-6 w-10 stroke-[1px] text-slate-700"
                 >

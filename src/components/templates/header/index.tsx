@@ -98,7 +98,7 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="flex cursor-target items-center  p-3 rounded-full bg-white/50 dark:bg-neutral-950/70 backdrop-blur-md">
+          <div className="flex cursor-target items-center  p-3 rounded-full bg-white/30 dark:bg-neutral-950/30 backdrop-blur-[5px]">
             {/* Animated container so text moves smoothly */}
             <motion.h1
               animate={{ marginRight: hovered ? 12 : 5 }} // mr-6 = 24px, mr-3 = 12px

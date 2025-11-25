@@ -1,10 +1,13 @@
 'use client';
 import { Boxes } from '@/components/atoms/common/background-boxes';
+import { HologramText } from '@/components/atoms/custom/animated-logo-text';
 import CircularText from '@/components/atoms/custom/rounded-text';
 import ContainerIntro from '@/components/organisms/container-1';
 import ContainerTwo from '@/components/organisms/container-2';
+import ContainerAbout from '@/components/organisms/container-about';
 import MainLayout from '@/components/templates/main-layout';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
@@ -103,17 +106,21 @@ export default function Home() {
   return (
     <MainLayout isFull>
       <div className="fixed inset-0 z-0">
-        <Boxes className="opacity-20" />
+        {/* <img src={'/cx-logo.png'} className="absolute w-[100em] " alt="" /> */}
+        <Boxes />
       </div>
       <div className="min-h-screen flex items-center justify-center">
         <ContainerIntro />
       </div>
-      <div className="min-h-screen">
+      {/* <div className="min-h-screen">
         <ContainerTwo />
+        </div> */}
+      <div className="min-h-screen bg-green-100 flex items-center justify-center">
+        <ContainerAbout />
       </div>
       <div ref={thirdRef}>
-        <div className="min-h-screen bg-green-100 flex items-center justify-center">
-          <h1 className="text-4xl">2</h1>
+        <div className="w-full bg-white/50 dark:bg-neutral-900/50 border-2 z-10 backdrop-blur-[2px] py-5">
+          <HologramText text="clixure." />
         </div>
 
         {/* Section that controls animation */}
