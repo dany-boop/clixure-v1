@@ -1,9 +1,10 @@
 'use client';
 import { Boxes } from '@/components/atoms/common/background-boxes';
 import InfinityWalkingLogo from '@/components/molecules/brand-logos';
-import ContainerIntro from '@/components/organisms/container-1';
+import ContainerIntro from '@/components/organisms/container-intro';
 import ContainerAbout from '@/components/organisms/container-about';
 import MainLayout from '@/components/templates/main-layout';
+import ContainerService from '@/components/organisms/container-service';
 
 export default function Home() {
   return (
@@ -16,19 +17,13 @@ export default function Home() {
         <ContainerIntro />
       </div>
       <div className="">
-        <InfinityWalkingLogo />
+        <ContainerService />
       </div>
-      {/* <div className="min-h-screen">
-        <ContainerTwo />
-        </div> */}
       <div className="min-h-screen bg-green-100 flex items-center justify-center">
         <ContainerAbout />
       </div>
+      <InfinityWalkingLogo />
       <div>
-        <div className="w-full bg-white/50 dark:bg-neutral-900/50 border-2 z-10 backdrop-blur-[2px] py-5">
-          {/* <HologramText text="clixure." /> */}
-        </div>
-
         {/* Section that controls animation */}
         <div className="min-h-screen bg-blue-100 flex items-center justify-center">
           <h1 className="text-3xl font-bold">3 (controls CircularText)</h1>
