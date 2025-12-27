@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const InfinityLogoCarousel = () => {
   const [offset, setOffset] = useState(0);
@@ -87,8 +88,33 @@ const InfinityLogoCarousel = () => {
       />
 
       <div className="relative w-full h-20 md:h-32 z-10">
-        {/* Logo track */}
-        <div className="relative w-full h-full overflow-hidden">
+        <div
+          className="relative w-full h-full overflow-hidden"
+          style={{
+            WebkitMaskImage: `
+      linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 12%,
+        black 30%,
+        black 70%,
+        transparent 88%,
+        transparent 100%
+      )
+    `,
+            maskImage: `
+      linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 12%,
+        black 30%,
+        black 70%,
+        transparent 88%,
+        transparent 100%
+      )
+    `,
+          }}
+        >
           <motion.div
             className="flex absolute left-0 top-0 h-full items-center"
             style={{
@@ -113,26 +139,6 @@ const InfinityLogoCarousel = () => {
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Left fade mask overlay */}
-          <div
-            className="absolute left-0 top-0 h-full w-1/3 pointer-events-none z-20"
-            style={{
-              maskImage: 'linear-gradient(to left, black, transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to left, black, transparent 100%)',
-            }}
-          />
-
-          {/* Right fade mask overlay */}
-          <div
-            className="absolute right-0 top-0 h-full w-1/3 pointer-events-none z-20"
-            style={{
-              maskImage: 'linear-gradient(to right, black, transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to right, black, transparent 100%)',
-            }}
-          />
         </div>
       </div>
     </div>

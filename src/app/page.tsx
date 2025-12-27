@@ -4,7 +4,8 @@ import InfinityWalkingLogo from '@/components/molecules/brand-logos';
 import ContainerIntro from '@/components/organisms/container-intro';
 import ContainerAbout from '@/components/organisms/container-about';
 import MainLayout from '@/components/templates/main-layout';
-import ContainerService from '@/components/organisms/container-service';
+import Pricing from '@/components/organisms/container-pricing';
+import { ContainerService } from '@/components/organisms/container-service';
 
 export default function Home() {
   return (
@@ -23,11 +24,8 @@ export default function Home() {
         <ContainerAbout />
       </div>
       <InfinityWalkingLogo />
-      <div>
-        {/* Section that controls animation */}
-        <div className="min-h-screen bg-blue-100 flex items-center justify-center">
-          <h1 className="text-3xl font-bold">3 (controls CircularText)</h1>
-        </div>
+      <div className="z-10">
+        <Pricing />
       </div>
 
       <div className="min-h-screen bg-yellow-100 flex items-center justify-center">
