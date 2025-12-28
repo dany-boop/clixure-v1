@@ -39,24 +39,25 @@ export function ParallaxItem({
   style,
   ...props
 }: ParallaxItemProps) {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: [`${start}px end`, `end ${end * -1}px`],
+    offset: ['start end', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0.75, 1], [1, 0.85]);
-
   const y = useTransform(scrollYProgress, [0, 1], [start, end]);
-  const transform = useMotionTemplate`translateY(${y}px) scale(${scale})`;
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
   return (
     <motion.div
-      className={className}
       ref={ref}
-      style={{ transform, opacity, ...style }}
+      className={className}
+      style={{
+        y,
+        opacity,
+        ...style,
+      }}
       {...props}
     />
   );

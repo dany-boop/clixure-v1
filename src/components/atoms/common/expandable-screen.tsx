@@ -183,7 +183,7 @@ export function ExpandableScreenContent({
               onClick={collapse}
               className={`absolute right-6 top-6 z-30 bg-black flex h-10 w-10 items-center justify-center transition-colors rounded-full ${
                 closeButtonClassName ||
-                'text-white bg-transparent hover:bg-white/10'
+                'dark:text-white text-black bg-transparent hover:bg-white/10'
               }`}
               aria-label="Close"
             >
