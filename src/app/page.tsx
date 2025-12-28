@@ -20,9 +20,7 @@ export default function Home() {
       <div className="">
         <ContainerService />
       </div>
-      <div className="min-h-screen bg-green-100 flex items-center justify-center">
-        <ContainerAbout />
-      </div>
+      <ContainerAbout />
       <InfinityWalkingLogo />
       <div className="z-10">
         <Pricing />

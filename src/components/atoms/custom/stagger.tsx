@@ -7,7 +7,10 @@ import {
   stagger,
   StaggerOrigin,
 } from 'motion/react';
-import { ANIMATION_VARIANTS, AnimationT } from '@/lib/systaliko-animation-variants';
+import {
+  ANIMATION_VARIANTS,
+  AnimationT,
+} from '@/lib/systaliko-animation-variants';
 interface WordProps extends React.HTMLAttributes<HTMLSpanElement> {
   animation?: AnimationT;
 }
@@ -19,7 +22,10 @@ interface ContainerStaggerProps extends HTMLMotionProps<'div'> {
 
 export const ContainerStagger = React.forwardRef<
   HTMLDivElement,
-  ContainerStaggerProps
+  ContainerStaggerProps & {
+    onFinish?: () => void;
+    animateOnce?: boolean;
+  }
 >(
   (
     {
@@ -28,22 +34,33 @@ export const ContainerStagger = React.forwardRef<
       staggerDirection = 1,
       className,
       transition,
+      onFinish,
+      animateOnce = true,
       ...props
     },
     ref
   ) => {
+    const [hasAnimated, setHasAnimated] = React.useState(false);
+
     return (
       <motion.div
         ref={ref}
         className={className}
         initial="hidden"
-        whileInView="visible"
+        animate={hasAnimated ? 'visible' : undefined}
+        whileInView={animateOnce ? 'visible' : undefined}
         viewport={{ once: true }}
         transition={{
           staggerChildren,
           delayChildren,
           staggerDirection,
           ...transition,
+        }}
+        onAnimationComplete={() => {
+          if (!hasAnimated) {
+            setHasAnimated(true);
+            onFinish?.();
+          }
         }}
         {...props}
       />
@@ -81,7 +98,6 @@ export function TextStaggerInview({
   children,
   transition,
   className,
-  viewport = { once: true, amount: 0.25 },
   staggerValue = 0.02,
   staggerStart = 'first',
   animation,
@@ -90,11 +106,11 @@ export function TextStaggerInview({
 }: TextStaggerProps) {
   const words = String(children).split(' ');
   const MotionComponent = motion.create(Component);
+
   return (
     <MotionComponent
       initial="hidden"
-      whileInView={'visible'}
-      viewport={viewport}
+      animate="visible"
       className={className}
       transition={{
         delayChildren: stagger(staggerValue, { from: staggerStart }),
