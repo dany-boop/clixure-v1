@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import SongPlayer from '../custom-player';
 
 const radius = 22;
 const circumference = 2 * Math.PI * radius;
