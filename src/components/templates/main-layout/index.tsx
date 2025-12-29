@@ -4,6 +4,7 @@ import { FC, ReactNode } from 'react';
 import Header from '../header';
 import SmoothScrollWrapper from '@/components/atoms/custom/scroll-wrapper';
 import { Boxes } from '@/components/atoms/common/background-boxes';
+import SongPlayer from '@/components/atoms/custom/custom-player';
 
 type Props = {
   children: ReactNode;
@@ -23,6 +24,12 @@ const MainLayout: FC<Props> = ({ children, isFull }) => {
         {children}
       </main>
       {/* </SmoothScrollWrapper> */}
+
+      <SongPlayer
+        src="/audio/John-Coltrane - Giant Steps.mp3"
+        title="Giant Steps"
+        artist="Coltrane"
+      />
       <footer>asdsa</footer>
     </main>
   );
